@@ -31,12 +31,16 @@ void AMyActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// 시작
+
+	// 카테고리, 로깅 수준, 형식, 인자
+	UE_LOG(LogTemp, Warning, TEXT("BeginPlay %d"), 3);
 }
 
 // Called every frame
 void AMyActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	AddActorLocalRotation(FRotator(0.f, RotateSpped * DeltaTime, 0.f));
 }
 

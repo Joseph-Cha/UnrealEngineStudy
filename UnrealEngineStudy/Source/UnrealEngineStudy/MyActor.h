@@ -32,4 +32,6 @@ private:
 	int32 Hp;
 	UPROPERTY(EditAnywhere, Category = BattleStat) 
 	int32 Mp;
+	UPROPERTY(EditAnywhere, Category = BattleStat)
+	float RotateSpped = 30.f;
 };
