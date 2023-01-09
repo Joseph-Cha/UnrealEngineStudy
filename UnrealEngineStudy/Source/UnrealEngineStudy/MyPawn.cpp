@@ -43,6 +43,24 @@ void AMyPawn::Tick(float DeltaTime)
 void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &AMyPawn::UpDown); 
+	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AMyPawn::LeftRight); 
 }
 
+void AMyPawn::UpDown(float Value)
+{
+	if (Value == 0.f)
+	{
+		return;
+	}
+	UE_LOG(LogTemp, Warning, TEXT("UpDown %d"), Value);
+}
+
+void AMyPawn::LeftRight(float Value)
+{
+	if (Value == 0.f)
+	{
+		return;
+	}
+	UE_LOG(LogTemp, Warning, TEXT("LeftRight %d"), Value);
+}
