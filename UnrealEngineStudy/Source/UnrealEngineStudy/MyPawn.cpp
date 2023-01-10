@@ -13,6 +13,7 @@ AMyPawn::AMyPawn()
 	// 메쉬 컴포넌트를 생성
 	// Mesh가 UPROPERTY 특성을 들고 있기 때문에 이렇게 메모리에 객체를 생성해도 언리얼에서 알아서 메모리 관리를 해준다.
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MESH"));
+	Movement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("MOVEMENT"));
 
 	// 해당 액터의 mesh는 RootComponent로 넣어줘야 한다 -> 규칙
 	RootComponent = Mesh;
@@ -43,6 +44,7 @@ void AMyPawn::Tick(float DeltaTime)
 void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
 	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &AMyPawn::UpDown); 
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AMyPawn::LeftRight); 
 }
@@ -53,7 +55,7 @@ void AMyPawn::UpDown(float Value)
 	{
 		return;
 	}
-	UE_LOG(LogTemp, Warning, TEXT("UpDown %d"), Value);
+	AddMovementInput(GetActorForwardVector(), Value);
 }
 
 void AMyPawn::LeftRight(float Value)
@@ -62,5 +64,5 @@ void AMyPawn::LeftRight(float Value)
 	{
 		return;
 	}
-	UE_LOG(LogTemp, Warning, TEXT("LeftRight %d"), Value);
+	AddMovementInput(GetActorRightVector(), Value);
 }

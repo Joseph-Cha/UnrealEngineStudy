@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "GameFramework/FloatingPawnMovement.h"
 #include "MyPawn.generated.h"
 
 UCLASS()
@@ -33,4 +34,6 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Mesh;
 
+	UPROPERTY(VisibleAnywhere)
+	UFloatingPawnMovement* Movement;
 };
